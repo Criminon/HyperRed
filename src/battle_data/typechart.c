@@ -1,0 +1,389 @@
+#include <pokeagb/pokeagb.h>
+
+// 0 - Normal damage
+// 1 - Super effective damage
+// 2 - Not very effective damage
+// 3 - Immune
+
+u8 effectiveness_chart[342] = {
+
+/* Normal */
+	0, // Normal
+	1, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	0, // Rock
+	3, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	0, // Psychic
+	0, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Fighting */ 
+	0, // Normal
+	0, // Fighting
+	1, // Flying
+	0, // Poison
+	0, // Ground
+	2, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	1, // Psychic
+	0, // Ice
+	0, // Dragon
+	2, // Dark
+	1, // Fairy
+
+/* Flying */ 
+	0, // Normal
+	2, // Fighting
+	0, // Flying
+	0, // Poison
+	3, // Ground
+	1, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	2, // Grass
+	1, // Electric
+	0, // Psychic
+	1, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Poison */ 
+	0, // Normal
+	2, // Fighting
+	0, // Flying
+	2, // Poison
+	1, // Ground
+	0, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	2, // Grass
+	0, // Electric
+	1, // Psychic
+	0, // Ice
+	0, // Dragon
+	0, // Dark
+	2, // Fairy
+
+/* Ground */ 
+	0, // Normal
+	0, // Fighting
+	0, // Flying
+	2, // Poison
+	0, // Ground
+	2, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	1, // Water
+	1, // Grass
+	3, // Electric
+	0, // Psychic
+	1, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Rock */ 
+	2, // Normal
+	1, // Fighting
+	2, // Flying
+	2, // Poison
+	1, // Ground
+	0, // Rock
+	0, // Ghost
+	1, // Steel
+	0, // ???
+	2, // Fire
+	1, // Water
+	1, // Grass
+	0, // Electric
+	0, // Psychic
+	0, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Bug */ 
+	0, // Normal
+	2, // Fighting
+	1, // Flying
+	0, // Poison
+	2, // Ground
+	1, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	1, // Fire
+	0, // Water
+	2, // Grass
+	0, // Electric
+	0, // Psychic
+	0, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Ghost */ 
+	3, // Normal
+	3, // Fighting
+	0, // Flying
+	2, // Poison
+	0, // Ground
+	0, // Rock
+	1, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	0, // Psychic
+	0, // Ice
+	0, // Dragon
+	1, // Dark
+	0, // Fairy
+
+/* Steel */ 
+	2, // Normal
+	1, // Fighting
+	2, // Flying
+	3, // Poison
+	1, // Ground
+	2, // Rock
+	0, // Ghost
+	2, // Steel
+	0, // ???
+	1, // Fire
+	0, // Water
+	2, // Grass
+	0, // Electric
+	2, // Psychic
+	2, // Ice
+	2, // Dragon
+	0, // Dark
+	2, // Fairy
+
+/* ??? */
+	0, // Normal
+	0, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	0, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	0, // Psychic
+	0, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Fire */ 
+	0, // Normal
+	0, // Fighting
+	0, // Flying
+	0, // Poison
+	1, // Ground
+	1, // Rock
+	0, // Ghost
+	2, // Steel
+	0, // ???
+	2, // Fire
+	1, // Water
+	2, // Grass
+	0, // Electric
+	0, // Psychic
+	2, // Ice
+	0, // Dragon
+	0, // Dark
+	2, // Fairy
+
+/* Water */ 
+	0, // Normal
+	0, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	0, // Rock
+	0, // Ghost
+	2, // Steel
+	0, // ???
+	2, // Fire
+	2, // Water
+	1, // Grass
+	1, // Electric
+	0, // Psychic
+	2, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Grass */ 
+	0, // Normal
+	0, // Fighting
+	1, // Flying
+	1, // Poison
+	2, // Ground
+	0, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	1, // Fire
+	2, // Water
+	2, // Grass
+	2, // Electric
+	0, // Psychic
+	1, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Electric */ 
+	0, // Normal
+	0, // Fighting
+	2, // Flying
+	0, // Poison
+	1, // Ground
+	0, // Rock
+	0, // Ghost
+	2, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	2, // Electric
+	0, // Psychic
+	0, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Psychic */ 
+	0, // Normal
+	2, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	0, // Rock
+	1, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	2, // Psychic
+	0, // Ice
+	0, // Dragon
+	1, // Dark
+	0, // Fairy
+
+/* Ice */ 
+	0, // Normal
+	1, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	1, // Rock
+	0, // Ghost
+	1, // Steel
+	0, // ???
+	1, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	0, // Psychic
+	2, // Ice
+	0, // Dragon
+	0, // Dark
+	0, // Fairy
+
+/* Dragon */ 
+	0, // Normal
+	0, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	0, // Rock
+	0, // Ghost
+	0, // Steel
+	0, // ???
+	2, // Fire
+	2, // Water
+	2, // Grass
+	2, // Electric
+	0, // Psychic
+	1, // Ice
+	1, // Dragon
+	0, // Dark
+	1, // Fairy
+
+/* Dark */ 
+	0, // Normal
+	1, // Fighting
+	0, // Flying
+	0, // Poison
+	0, // Ground
+	0, // Rock
+	2, // Ghost
+	0, // Steel
+	0, // ???
+	0, // Fire
+	0, // Water
+	0, // Grass
+	0, // Electric
+	3, // Psychic
+	0, // Ice
+	0, // Dragon
+	2, // Dark
+	1, // Fairy
+
+/* Fairy */ 
+	2, // Bug
+	2, // Dark
+	3, // Dragon
+	0, // Electric
+	0, // Fairy
+	2, // Fighting
+	0, // Fire
+	0, // Flying
+	0, // Ghost
+	0, // Grass
+	0, // Ground
+	0, // Ice
+	0, // Normal
+	1, // Poison
+	0, // Psychic
+	0, // Rock
+	1, // Steel
+	0, // Water
+};
