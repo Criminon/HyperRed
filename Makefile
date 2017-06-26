@@ -79,7 +79,6 @@ generated/images/%.c: images/%.png images/%.grit
 	@grit $< -o $@ -ff$(<:%.png=%.grit)
 	@python scripts/grithack.py $@
     
-resource_make: @python scripts/portraits.py
 
 $(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d
