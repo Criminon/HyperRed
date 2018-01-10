@@ -3,11 +3,17 @@ Pokemon Heat Red
 
 Feature List:
 Add, subtract, multiply divide variables
+
 easy multichoice boxes (like JPAN)
+
 Complete read/write to pokemon, including EV/IV, ball, status, ribbon, hp etc.
+
 Check Species
+
 status checker & party status inducer
+
 party hp changer
+
 Start, stop, read timer (might not need this)
 Shiny encounter
 Pokemon 6 levels under you no longer provide XP
