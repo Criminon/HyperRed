@@ -17,9 +17,13 @@ party hp changer
 
 Start, stop, read timer (might not need this)
 
-Shiny encounter
+Random wild pokemon
+
+Pokemon scale to your team (rounded) +1-5
 
 Pokemon 6 levels under you no longer provide XP
+
+Shiny encounter
 
 "Changed Pokemon Encounter Level" (like JPAN)
 
