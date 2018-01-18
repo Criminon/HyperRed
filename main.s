@@ -1,9 +1,11 @@
-     .gba
+        .gba
         .thumb
         .open "roms/BPRE0.gba","build/multi.gba", 0x08000000
 
-       // .include "patches/bx_setup.s"
+        .include "armips_macros/macros.s"
+        .include "patches/custom_cmds.s"
 
-        .org 0x09000000
+
+        .org 0x08800000
         .importobj "build/linked.o"
         .close
