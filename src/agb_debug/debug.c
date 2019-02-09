@@ -19,7 +19,7 @@
  *   License along with Sovereign of the Skies.                             *
  *   If not, see <http://www.gnu.org/licenses/>.                            *
  ****************************************************************************/
-/* 
+/*
  * File:   agb_debug.c
  * Author: Sturmvogel
  *
