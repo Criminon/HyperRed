@@ -8,5 +8,16 @@
     bx r0
 .pool
 
-.org 0x0807F5CC
-    .word 0x8751BB4
+
+.org 0x8751C18
+    .word FindPokemonSlots + 1
+.pool
+
+.org 0x8751C1D
+    .word EvolvePokemon + 1
+.pool
+
+.org 0x8751C21
+    .byte 0x27
+    .byte 0x2
+.pool
